@@ -6,7 +6,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func Get (ctx *gin.Context) {
+func GetByPathwayId (ctx *gin.Context) {
 
-	ctx.JSON(200, model.Get())
+	ctx.JSON(200, model.GetByPathwayId(ctx.Param("pathwayId")))
 }

@@ -8,6 +8,7 @@ import (
 	// Load modules
 	pathway "backend/modules/pathway/controllers"
 	course "backend/modules/course/controllers"
+	chapter "backend/modules/chapter/controllers"
 
 	"backend/utils"
 
@@ -39,6 +40,10 @@ func main () {
 	courses.GET("/", course.Get)
 	courses.GET("/:courseId", course.GetById)
 	courses.GET("/pathway/:pathwayId", course.GetByPathwayId)
+
+	// CHAPTERS
+	chapters := r.Group("/chapters")
+	chapters.GET("/:courseId", chapter.GetByCourseId)
 
 	fmt.Println(":8080")
 
