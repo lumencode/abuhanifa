@@ -1,5 +1,21 @@
+*,
+*::before,
+*::after {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	vertical-align: top;
+	-webkit-tap-highlight-color: transparent;
+}
 body {
+	background: #1f1f1f;
 	font-family: -system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
 }
