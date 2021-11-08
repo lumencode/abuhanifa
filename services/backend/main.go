@@ -7,6 +7,7 @@ import (
 
 	// Load modules
 	pathway "backend/modules/pathway/controllers"
+	course "backend/modules/course/controllers"
 
 	"backend/utils"
 
@@ -29,8 +30,14 @@ func main () {
 
 	r := gin.Default()
 
+	// PATHWAYS
 	pathways := r.Group("/pathways")
 	pathways.GET("/", pathway.Get)
+
+	// COURSES
+	courses := r.Group("/courses")
+	courses.GET("/", course.Get)
+	courses.GET("/:pathwayId", course.GetByPathwayId)
 
 	fmt.Println(":8080")
 

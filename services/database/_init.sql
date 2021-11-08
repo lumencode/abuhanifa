@@ -6,6 +6,9 @@ create table pathways (
 create table courses (
 	course_id serial not null primary key,
 	name character varying(128) not null,
+	is_active boolean default false,
+	created_at timestamp with time zone default current_timestamp,
+	updated_at timestamp with time zone default null,
 	pathway_id int not null references pathways(pathway_id)
 );
 

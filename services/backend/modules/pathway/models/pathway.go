@@ -10,10 +10,7 @@ type Pathway struct {
 }
 
 func Get() []Pathway {
-
 	var pathways []Pathway
-
 	utils.DB.Find(&pathways)
-
 	return pathways
 }
