@@ -37,7 +37,8 @@ func main () {
 	// COURSES
 	courses := r.Group("/courses")
 	courses.GET("/", course.Get)
-	courses.GET("/:pathwayId", course.GetByPathwayId)
+	courses.GET("/:courseId", course.GetById)
+	courses.GET("/pathway/:pathwayId", course.GetByPathwayId)
 
 	fmt.Println(":8080")
 
