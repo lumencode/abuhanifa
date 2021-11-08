@@ -13,3 +13,27 @@
 
 # Dependency directories (remove the comment below to include it)
 # vendor/
+
+# NODE
+
+# dependencies
+services/frontend/node_modules
+services/frontend/.pnp
+services/frontend/.pnp.js
+
+# testing
+services/frontend/coverage
+
+# production
+services/frontend/build
+
+# misc
+services/frontend/.DS_Store
+services/frontend/.env.local
+services/frontend/.env.development.local
+services/frontend/.env.test.local
+services/frontend/.env.production.local
+
+services/frontend/npm-debug.log*
+services/frontend/yarn-debug.log*
+services/frontend/yarn-error.log*
