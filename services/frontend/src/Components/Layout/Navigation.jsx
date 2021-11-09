@@ -1,5 +1,7 @@
 import styled from 'styled-components'
 
+import { useNavigate } from 'react-router-dom'
+
 import LogoIcon from '../Icons/Logo'
 import BookIcon from '../Icons/Book'
 import IslamIcon from '../Icons/Islam'
@@ -50,7 +52,7 @@ const StyledToolbar = styled.ul`
 
 const StyledButton = styled.button`
 	font-size: 1.2rem;
-	color: #9f9f9f;
+	color: white;
 	text-transform: uppercase;
 	display: flex;
 	border: none;
@@ -74,30 +76,40 @@ const StyledButton = styled.button`
 
 function Navigation () {
 
+	const navigate = useNavigate()
+
 	return (
 		<StyledNavigation>
 			<StyledWrapper>
 				<StyledMenu>
 					<li>
-						<StyledButton>
+						<StyledButton
+							onClick={ () => navigate('/') }
+						>
 							<LogoIcon />
 							<span>Home</span>
 						</StyledButton>
 					</li>
 					<li>
-						<StyledButton>
+						<StyledButton
+							onClick={ () => navigate('/courses') }
+						>
 							<BookIcon />
 							<span>Courses</span>
 						</StyledButton>
 					</li>
 					<li>
-						<StyledButton>
+						<StyledButton
+							onClick={ () => navigate('/') }
+						>
 							<IslamIcon />
 							<span>Academy</span>
 						</StyledButton>
 					</li>
 					<li>
-						<StyledButton>
+						<StyledButton
+							onClick={ () => navigate('/') }
+						>
 							<CertificateIcon />
 							<span>Certification</span>
 						</StyledButton>
@@ -105,7 +117,9 @@ function Navigation () {
 				</StyledMenu>
 				<StyledToolbar>
 					<li>
-						<StyledButton>
+						<StyledButton
+							onClick={ () => navigate('/') }
+						>
 							<IdentityIcon />
 							<span>Account</span>
 						</StyledButton>

@@ -5,7 +5,7 @@ import Navigation from '../Layout/Navigation'
 import Main from '../Layout/Main'
 import Footer from '../Layout/Footer'
 
-import Pathway from '../Pathway/Pathway'
+import Course from '../Course/Course'
 
 const StyledWrapper = styled.div`
 	font-size: 2rem;
@@ -16,7 +16,7 @@ const StyledWrapper = styled.div`
 	width: 100%;
 	max-width: 80rem;
 	margin: 0 auto;
-	padding: 0 2rem;
+	padding: 1rem 2rem;
 	@media screen and (max-width: 60rem) {
 		padding: 0 1rem;
 	}
@@ -25,17 +25,17 @@ const StyledWrapper = styled.div`
 const StyledUl = styled.ul`
 	list-style-type: none;
 	display: flex;
-	gap: 4rem 2rem;
 	flex-wrap: wrap;
+	gap: 4rem 2rem;
 	@media screen and (max-width: 60rem) {
-		flex-direction: column;
+		gap: 3rem 1rem;
 	}
 `
 
 const StyledLi = styled.li`
-	width: calc((100% - 2rem) / 2);
+	width: calc((100% - 6rem) / 4);
 	@media screen and (max-width: 60rem) {
-		width: 100%;
+		width: calc((100% - 1rem) / 2);
 	}
 `
 
@@ -50,17 +50,31 @@ function Pathways() {
 				<StyledWrapper>
 					<StyledUl>
 						<StyledLi>
-							<Pathway
-								pathwayId="1"
-								name="Become a Back-End Developer"
-								coursesCount="4"
+							<Course
+								courseId="1"
+								cover="/cover1.jpg"
+								name="Decode the Coding Interview in Go: Real-World Examples"
 							/>
 						</StyledLi>
 						<StyledLi>
-							<Pathway
-								pathwayId="2"
-								name="Become a Front-End Developer"
-								coursesCount="1"
+							<Course
+								courseId="2"
+								cover="/cover2.jpg"
+								name="Write Professional Command-line Programs in Go"
+							/>
+						</StyledLi>
+						<StyledLi>
+							<Course
+								courseId="5"
+								cover="/cover5.jpg"
+								name="Mastering Concurrency in Go"
+							/>
+						</StyledLi>
+						<StyledLi>
+							<Course
+								courseId="4"
+								cover="/cover4.jpg"
+								name="An Introduction to Programming in Go"
 							/>
 						</StyledLi>
 					</StyledUl>

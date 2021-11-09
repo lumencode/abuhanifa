@@ -1,18 +1,46 @@
 import styled from 'styled-components'
 
+import { useNavigate } from 'react-router-dom'
+
 import RightIcon from '../Icons/Right'
 import BrowserIcon from '../Icons/Browser'
 
 const StyledDiv = styled.div`
-	border: 3px solid #2f2f2f;
-	border-radius: 0.5rem;
-	padding: 2rem;
+	background: rgba(255,255,255,0.6);
+	position: relative;
 	display: flex;
 	flex-direction: column;
 	gap: 2rem;
+	padding: 2rem;
+	&::before {
+		content: "";
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		height: 100%;
+		z-index: -1;
+		border-radius: 0.5rem;
+	}
+	&::after {
+		-webkit-mask: radial-gradient(100% 80% at bottom,#fff 79.5%,transparent 80%) left,radial-gradient(100% 80% at top,transparent 79.5%,#fff 80%) right;
+		mask: radial-gradient(100% 80% at bottom,#fff 79.5%,transparent 80%) left,radial-gradient(100% 80% at top,transparent 79.5%,#fff 80%) right;
+		-webkit-mask-size: 50.1% 100%;
+		-webkit-mask-repeat: no-repeat;
+		mask-size: 50.1% 100%;
+		mask-repeat: no-repeat;
+		content: "";
+	    position: absolute;
+	    top: 0;
+	    left: 0;
+	    right: 0;
+	    height: 100%;
+	    z-index: -1;
+	    border-radius: 0.5rem;
+	}
 	@media screen and (max-width: 60rem) {
 		gap: 1rem;
-		padding: 1rem;
+		padding: 1.5rem;
 	}
 `
 
@@ -31,38 +59,37 @@ const StyledBottom = styled.div`
 const StyledH1 = styled.h1`
 	font-size: 2rem;
 	font-weight: normal;
-	color: #9f9f9f;
-	-webkit-box-reflect: below -1.5rem linear-gradient(180deg,transparent,rgba(0,0,0,.3));
+	color: black;
+	-webkit-box-reflect: below -1.3rem linear-gradient(180deg,transparent,rgba(0,0,0,.2));
 	@media screen and (max-width: 60rem) {
-		font-size: 1.5rem;
+		font-size: 1.4rem;
+		-webkit-box-reflect: below -1rem linear-gradient(180deg,transparent,rgba(0,0,0,.2));
 	}
 `
 
 const StyledDescription = styled.p`
-	font-size: 1.5rem;
+	font-size: 1.3rem;
 	line-height: 1.6;
-	color: #4f4f4f;
+	color: black;
 	display: flex;
 	align-items: center;
 	@media screen and (max-width: 60rem) {
-		font-size: 1.2rem;
+		font-size: 1.1rem;
 	}
 `
 
 const StyledButton = styled.button`
-	font-size: 1.5rem;
-	color: #5f5f5f;
+	position: relative;
+	font-size: 1.4rem;
+	color: black;
 	display: flex;
 	align-items: center;
+	border: none;
 	background: transparent;
-	border: 2px solid #3f3f3f;
-	border-radius: 0.5rem;
 	gap: 1rem;
-	padding: 1rem 2rem;
 	cursor: pointer;
 	&:hover {
-		color: #7f7f7f;
-		border-color: #7f7f7f;
+		color: white;
 	}
 	& > svg {
 		fill: currentColor;
@@ -72,7 +99,6 @@ const StyledButton = styled.button`
 	@media screen and (max-width: 60rem) {
 		font-size: 1.3rem;
 		justify-content: space-between;
-		padding: 1rem;
 		& > svg {
 			width: 1.5rem;
 			height: 1.5rem;
@@ -82,7 +108,7 @@ const StyledButton = styled.button`
 
 const StyledP = styled.p`
 	font-size: 1rem;
-	color: #5f5f5f;
+	color: black;
 	display: flex;
 	align-items: center;
 	& > svg {
@@ -101,11 +127,12 @@ const StyledP = styled.p`
 
 const StyledSpan = styled.span`
 	font-weight: bold;
-	color: #7f7f7f;
 	margin-left: 0.2rem;
 `
 
-function Pathway ({ name, coursesCount, }) {
+function Pathway ({ pathwayId, name, coursesCount, }) {
+
+	const navigate = useNavigate()
 
 	return (
 		<StyledDiv>
@@ -119,7 +146,9 @@ function Pathway ({ name, coursesCount, }) {
 					<span>Courses:</span>
 					<StyledSpan>{ coursesCount }</StyledSpan>
 				</StyledP>
-				<StyledButton>
+				<StyledButton
+					onClick={ () => navigate('/courses/pathway/' + pathwayId) }
+				>
 					<span>Browse Courses</span>
 					<RightIcon />
 				</StyledButton>
