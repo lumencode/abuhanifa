@@ -11,3 +11,10 @@ insert into takeaways (content, course_id) values
 ('Impress interviewers by showing an understanding of the data science field', 1),
 ('Apply your skills to real-life business cases', 3)
 ;
+
+insert into lessons (name, chapter_id) values
+('Preface', 1),
+('What is a Domain?', 1),
+('What is a Subdomain?', 1),
+('What is Domain Driven Design?', 2)
+;

@@ -18,16 +18,16 @@ create table takeaways (
 	course_id int not null references courses(course_id)
 );
 
-create table modules (
-	module_id serial not null primary key,
+create table chapters (
+	chapter_id serial not null primary key,
 	name character varying(128) not null,
 	course_id int not null references courses(course_id)
 );
 
 create table lessons (
 	lesson_id serial not null primary key,
-	name character varying(128) not null,
-	module_id int not null references modules(module_id)
+	name character varying(256) not null,
+	chapter_id int not null references chapters(chapter_id)
 );
 
 create table contents (
