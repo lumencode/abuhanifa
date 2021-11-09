@@ -4,6 +4,7 @@ import (
 	"time"
 
 	takeaway "backend/modules/takeaway/models"
+	chapter "backend/modules/chapter/models"
 )
 
 type Course struct {
@@ -15,4 +16,5 @@ type Course struct {
 type SingleCourse struct {
 	*Course
 	Takeaways []takeaway.Takeaway	`json:"takeaways" gorm:"foreignKey:TakeawayRefer"`
+	Chapters []chapter.Chapter		`json:"chapters" gorm:"foreignKey:ChapterRefer"`
 }
