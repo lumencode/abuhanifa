@@ -1,3 +1,9 @@
+import { useState, useEffect } from 'react'
+
+import { useParams } from 'react-router-dom'
+
+import useService from '../Hooks/useService'
+
 import styled from 'styled-components'
 
 import Header from '../Layout/Header'
@@ -39,7 +45,44 @@ const StyledLi = styled.li`
 	}
 `
 
-function Pathways() {
+function Courses() {
+
+	const serviceURL = useService()
+
+	const [courses, setCourses] = useState([])
+
+	const [loading, setLoading] = useState(true)
+
+	const { pathwayId } = useParams()
+
+	useEffect(() => {
+
+		;(async () => {
+
+			try {
+				const response = await fetch(serviceURL + '/courses/pathway/' + pathwayId)
+
+				if (response.status >= 200 && response.status <= 299) {
+
+					const json = await response.json()
+
+					setLoading(false)
+					setCourses(() => json)
+				}
+				else {
+					throw new Error(response.statusMessage || response.status)
+				}
+			}
+			catch(err) {
+				console.log("mana xato", err)
+			}
+
+		})()
+
+	}, [
+		serviceURL,
+		pathwayId,
+	])
 
 	return (
 		<>
@@ -47,36 +90,22 @@ function Pathways() {
 				<Navigation />
 			</Header>
 			<Main>
+				{ loading }
 				<StyledWrapper>
 					<StyledUl>
-						<StyledLi>
-							<Course
-								courseId="1"
-								cover="/cover1.jpg"
-								name="Decode the Coding Interview in Go: Real-World Examples"
-							/>
-						</StyledLi>
-						<StyledLi>
-							<Course
-								courseId="2"
-								cover="/cover2.jpg"
-								name="Write Professional Command-line Programs in Go"
-							/>
-						</StyledLi>
-						<StyledLi>
-							<Course
-								courseId="5"
-								cover="/cover5.jpg"
-								name="Mastering Concurrency in Go"
-							/>
-						</StyledLi>
-						<StyledLi>
-							<Course
-								courseId="4"
-								cover="/cover4.jpg"
-								name="An Introduction to Programming in Go"
-							/>
-						</StyledLi>
+						{
+							courses.map(course => (
+								<StyledLi
+									key={ course.id }
+								>
+									<Course
+										courseId={ course.id }
+										cover={ course.coverPath }
+										name={ course.name }
+									/>
+								</StyledLi>
+							))
+						}
 					</StyledUl>
 				</StyledWrapper>
 			</Main>
@@ -85,4 +114,4 @@ function Pathways() {
 	)
 }
 
-export default Pathways
+export default Courses

@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react'
 
-import styled from 'styled-components'
 import useService from '../Hooks/useService'
+
+import styled from 'styled-components'
 
 import Header from '../Layout/Header'
 import Navigation from '../Layout/Navigation'

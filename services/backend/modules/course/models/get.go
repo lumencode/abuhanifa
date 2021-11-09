@@ -6,6 +6,6 @@ import (
 
 func Get() []Course {
 	var courses []Course
-	utils.DB.Find(&courses)
+	utils.DB.Where("is_active = true").Find(&courses)
 	return courses
 }

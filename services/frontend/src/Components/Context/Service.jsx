@@ -5,7 +5,7 @@ const Context = createContext()
 function ServiceProvider({ children, }) {
 
 	return (
-		<Context.Provider value="http://192.168.53.126:8080">
+		<Context.Provider value="http://localhost:8080">
 			{ children }
 		</Context.Provider>
 	)
