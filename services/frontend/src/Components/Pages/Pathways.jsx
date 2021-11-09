@@ -1,4 +1,7 @@
+import { useState, useEffect } from 'react'
+
 import styled from 'styled-components'
+import useService from '../Hooks/useService'
 
 import Header from '../Layout/Header'
 import Navigation from '../Layout/Navigation'
@@ -41,28 +44,64 @@ const StyledLi = styled.li`
 
 function Pathways() {
 
+	const serviceURL = useService()
+
+	const [pathways, setPathways] = useState([])
+
+	const [loading, setLoading] = useState(true)
+
+	useEffect(() => {
+
+		;(async () => {
+
+			try {
+				const response = await fetch(serviceURL + '/pathways/')
+
+				if (response.status >= 200 && response.status <= 299) {
+
+					const json = await response.json()
+
+					setLoading(false)
+					setPathways(() => json)
+				}
+				else {
+					throw new Error(response.statusMessage || response.status)
+				}
+			}
+			catch(err) {
+				console.log("mana xato", err)
+			}
+
+		})()
+
+	}, [
+		serviceURL,
+	])
+
 	return (
 		<>
 			<Header>
 				<Navigation />
 			</Header>
 			<Main>
+
+				{ loading && <h1>loading...</h1> }
+
 				<StyledWrapper>
 					<StyledUl>
-						<StyledLi>
-							<Pathway
-								pathwayId="1"
-								name="Become a Back-End Developer"
-								coursesCount="4"
-							/>
-						</StyledLi>
-						<StyledLi>
-							<Pathway
-								pathwayId="2"
-								name="Become a Front-End Developer"
-								coursesCount="1"
-							/>
-						</StyledLi>
+						{
+							pathways.map(pathway => (
+								<StyledLi
+									key={ pathway.id }
+								>
+									<Pathway
+										pathwayId={ pathway.id }
+										name={ pathway.name }
+										coursesCount="4"
+									/>
+								</StyledLi>
+							))
+						}
 					</StyledUl>
 				</StyledWrapper>
 			</Main>

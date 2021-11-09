@@ -9,7 +9,7 @@ function App () {
 
 	return (
 		<Routes>
-			<Route path="/" element={ <Pathways /> } />
+			<Route path="/courses" element={ <Pathways /> } />
 			<Route path="/courses/pathway/:pathwayId" element={ <Courses /> } />
 		</Routes>
 	)

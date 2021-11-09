@@ -5,10 +5,14 @@ import * as serviceWorkerRegistration from './serviceWorkerRegistration'
 
 import { BrowserRouter } from 'react-router-dom'
 
+import { ServiceProvider } from './Components/Context/Service'
+
 ReactDOM.render(
 	<React.StrictMode>
 		<BrowserRouter>
-			<App />
+			<ServiceProvider>
+				<App />
+			</ServiceProvider>
 		</BrowserRouter>
 	</React.StrictMode>,
 	document.getElementById('root')

@@ -11,6 +11,9 @@ import (
 	takeaway "backend/modules/takeaway/controllers"
 	chapter "backend/modules/chapter/controllers"
 
+	// Load middlewares
+	"backend/middlewares"
+
 	"backend/utils"
 
 	"github.com/gin-gonic/gin"
@@ -31,6 +34,8 @@ func main () {
 	utils.DB = db
 
 	r := gin.Default()
+
+	r.Use(middlewares.Cors())
 
 	// PATHWAYS
 	pathways := r.Group("/pathways")
