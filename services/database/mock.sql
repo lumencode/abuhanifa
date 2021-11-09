@@ -5,3 +5,9 @@ insert into courses (name, pathway_id) values
 
 insert into chapters (name, course_id) values
 ('Chapter A', 1), ('Chapter B', 1), ('Chapter #1', 2), ('Chapter #2', 2), ('Chapter #3', 2);
+
+insert into takeaways (content, course_id) values
+('The course provides the entire toolbox you need to become a data scientist', 1),
+('Impress interviewers by showing an understanding of the data science field', 1),
+('Apply your skills to real-life business cases', 3)
+;
