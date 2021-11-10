@@ -35,3 +35,11 @@ create table contents (
 	content_id serial not null primary key,
 	lesson_id int not null references lessons(lesson_id)
 );
+
+create table users (
+	user_id serial not null primary key,
+	fullname character varying(48) not null,
+	phone_number character varying(12) not null,
+	password character varying(60) not null,
+	created_at timestamp with time zone default current_timestamp
+);

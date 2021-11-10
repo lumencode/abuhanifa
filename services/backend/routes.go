@@ -6,6 +6,7 @@ import (
 	course "backend/modules/course/controllers"
 	takeaway "backend/modules/takeaway/controllers"
 	chapter "backend/modules/chapter/controllers"
+	user "backend/modules/user/controllers"
 
 	"github.com/gin-gonic/gin"
 )
@@ -31,4 +32,8 @@ func InitRoutes (r *gin.Engine) {
 	// CHAPTERS
 	chapters := r.Group("/chapters")
 	chapters.GET("/:courseId", chapter.GetByCourseId)
+
+	// USERS
+	users := r.Group("/users")
+	users.POST("/join", user.Join)
 }
