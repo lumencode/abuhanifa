@@ -1,6 +1,7 @@
 package controllers
 
 import (
+	"backend/utils"
 	model "backend/modules/user/models"
 
 	"github.com/gin-gonic/gin"
@@ -8,7 +9,7 @@ import (
 
 func Join (ctx *gin.Context) {
 
-	body := model.PostUser{}
+	body := model.JoinUser{}
 
 	ctx.BindJSON(&body)
 
@@ -18,11 +19,14 @@ func Join (ctx *gin.Context) {
 		Password: body.Password,
 	}
 
-	newUser, ok := model.Join(user)
+	newUser, ok := model.Create(user)
 
 	if ok {
-		ctx.JSON(201, newUser)
+		ctx.JSON(201, gin.H{
+			"accessToken": utils.JWTSign(newUser.Id),
+			"user": newUser,
+		})
 	} else {
-		ctx.JSON(400, nil)
+		ctx.JSON(401, nil)
 	}
 }

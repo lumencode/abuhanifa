@@ -35,5 +35,7 @@ func InitRoutes (r *gin.Engine) {
 
 	// USERS
 	users := r.Group("/users")
+	users.GET("/list", user.Get)
 	users.POST("/join", user.Join)
+	users.POST("/login", user.Login)
 }

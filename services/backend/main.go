@@ -3,10 +3,14 @@ package main
 import (
 	"fmt"
 
+	"backend/utils"
+
 	"github.com/gin-gonic/gin"
 )
 
 func main () {
+
+	utils.InitJWT("abuhanifa")
 
 	InitDatabase(
 		DatabaseConfig{

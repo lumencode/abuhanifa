@@ -12,8 +12,13 @@ type User struct {
 	CreatedAt time.Time	`json:"createdAt"`
 }
 
-type PostUser struct {
+type JoinUser struct {
 	PhoneNumber string
 	Password string
 	Fullname string
+}
+
+type LoginUser struct {
+	PhoneNumber string	`json:"phoneNumber"`
+	Password string		`json:"password"`
 }
