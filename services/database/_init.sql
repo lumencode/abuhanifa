@@ -1,3 +1,5 @@
+create extension pgcrypto;
+
 create table pathways (
 	pathway_id serial not null primary key,
 	name character varying(128) not null
@@ -43,3 +45,18 @@ create table users (
 	password character varying(60) not null,
 	created_at timestamp with time zone default current_timestamp
 );
+
+create unique index phonenumber_idx on users (phone_number);
+
+create function before_user_create() 
+	returns trigger 
+	language plpgsql
+as $$
+begin
+	new.password = crypt(new.password, gen_salt('bf'));
+	return new;
+end;
+$$;
+
+create trigger before_user_create_tg before insert on users
+for each row execute procedure before_user_create();
